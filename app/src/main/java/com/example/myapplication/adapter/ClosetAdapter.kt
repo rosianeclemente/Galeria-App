@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.myapplication.database.AppDatabase
 import com.example.myapplication.databinding.ActivityItemBinding
 import com.example.myapplication.model.ClosetGram
 
@@ -35,11 +34,10 @@ class ClosetAdapter(private val onClickListener: (closet: ClosetGram) -> Unit) :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(closet: ClosetGram) {
             Glide.with(binding.root.context)
-                .load(closet)
+                .load(closet.image)
                 .centerCrop()
                 .into(binding.imageItem)
-            binding.imageItem.setImageBitmap()
-                binding.titleItem.text = closet.title
+            binding.titleItem.text = closet.title
             binding.root.setOnClickListener {
                 onClickListener.invoke(closet)
             }
